@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoSihatAI Chatbot</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header chatbot-header">
+    <div class="logo">
+      <img src="logo.svg" alt="GoSihatAI Logo" height="40">
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="chatbot.html" class="active">Chatbot</a>
+      <a href="meal-planner.html">Meal Planner</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="calculator.html">Calculator</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-switch">EN/BM</button>
+      <button class="mode-toggle" aria-label="Toggle light/dark mode">☀️/🌙</button>
+    </div>
+  </header>
+
+  <main class="chatbot-main">
+    <div class="chat-area">
+      <div class="chat-bubble ai">
+        <div class="avatar ai-avatar">🤖</div>
+        <div class="bubble-content">
+          Hi! Saya GoSihatAI. How can I help you with your health or food questions today?
+        </div>
+      </div>
+      <div class="chat-bubble user">
+        <div class="avatar user-avatar">🧑</div>
+        <div class="bubble-content">
+          What is the best breakfast for weight loss in Malaysia?
+        </div>
+      </div>
+      <div class="chat-bubble ai">
+        <div class="avatar ai-avatar">🤖</div>
+        <div class="bubble-content">
+          For weight loss, try oats with fresh fruit, or nasi lemak with less rice and more cucumber. Avoid sugary drinks. Need a meal plan?
+        </div>
+      </div>
+    </div>
+    <form class="chat-input-area" autocomplete="off">
+      <input type="text" class="chat-input" placeholder="Type your question..." required>
+      <button type="submit" class="send-btn" aria-label="Send">➤</button>
+    </form>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html> 

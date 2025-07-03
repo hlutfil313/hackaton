@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoSihatAI Meal Planner</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="logo.svg" alt="GoSihatAI Logo" height="40">
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="chatbot.html">Chatbot</a>
+      <a href="meal-planner.html" class="active">Meal Planner</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="calculator.html">Calculator</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-switch">EN/BM</button>
+      <button class="mode-toggle" aria-label="Toggle light/dark mode">☀️/🌙</button>
+    </div>
+  </header>
+
+  <main class="meal-planner-main">
+    <form class="meal-planner-form">
+      <div class="form-group">
+        <label for="weight-goal">Your Weight Goal (kg)</label>
+        <input type="number" id="weight-goal" name="weight-goal" min="30" max="200" placeholder="e.g. 65" required>
+      </div>
+      <div class="form-group">
+        <label for="goal-type">Goal</label>
+        <select id="goal-type" name="goal-type" required>
+          <option value="lose">Lose Weight</option>
+          <option value="maintain">Maintain Weight</option>
+          <option value="gain">Gain Weight</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="food-pref">Food Preferences</label>
+        <select id="food-pref" name="food-pref">
+          <option value="malay">Malay</option>
+          <option value="chinese">Chinese</option>
+          <option value="indian">Indian</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="halal">Halal</option>
+          <option value="any">Any</option>
+        </select>
+      </div>
+      <button type="submit" class="cta-btn" style="margin-top:1rem;">Generate Meal Plan</button>
+    </form>
+
+    <section class="meal-plan-section">
+      <h2>Your Sample Meal Plan</h2>
+      <div class="meal-plan-list">
+        <div class="meal-item">
+          <h3>Breakfast</h3>
+          <p>Nasi lemak (small portion), cucumber, boiled egg<br><span class="meal-kcal">350 kcal | 10g protein</span></p>
+        </div>
+        <div class="meal-item">
+          <h3>Lunch</h3>
+          <p>Grilled chicken breast, brown rice, stir-fried veggies<br><span class="meal-kcal">500 kcal | 35g protein</span></p>
+        </div>
+        <div class="meal-item">
+          <h3>Dinner</h3>
+          <p>Fish soup, tofu, mixed greens<br><span class="meal-kcal">400 kcal | 28g protein</span></p>
+        </div>
+      </div>
+      <button class="cta-btn" style="margin-top:1.5rem;">Generate Grocery List</button>
+    </section>
+  </main>
+
+  <div id="grocery-modal" class="grocery-modal" style="display:none;">
+    <div class="grocery-modal-content">
+      <span class="grocery-modal-close" id="grocery-modal-close">&times;</span>
+      <h2>Grocery List</h2>
+      <ul id="grocery-list"></ul>
+      <button id="grocery-print-btn" class="cta-btn" style="margin-top:1rem;">Print</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html> 
