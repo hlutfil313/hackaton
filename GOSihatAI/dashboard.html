@@ -2,26 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
   <title>GoSihatAI Health Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  >
 </head>
 <body>
   <header class="header">
     <div class="logo">
-      <img src="logo.svg" alt="GoSihatAI Logo" height="40">
+      <img
+        src="logo.svg"
+        alt="GoSihatAI Logo"
+        height="40"
+      >
     </div>
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="chatbot.html">Chatbot</a>
       <a href="meal-planner.html">Meal Planner</a>
-      <a href="dashboard.html" class="active">Dashboard</a>
+      <a
+        href="dashboard.html"
+        class="active"
+      >Dashboard</a>
       <a href="calculator.html">Calculator</a>
     </nav>
     <div class="header-actions">
       <button class="lang-switch">EN/BM</button>
-      <button class="mode-toggle" aria-label="Toggle light/dark mode">☀️/🌙</button>
+      <button
+        class="mode-toggle"
+        aria-label="Toggle light/dark mode"
+      >☀️/🌙</button>
     </div>
   </header>
 
@@ -29,11 +48,11 @@
     <section class="progress-section">
       <h2>Your Progress</h2>
       <div class="progress-chart">
-        <!-- Placeholder for chart -->
-        <svg width="100%" height="120" viewBox="0 0 320 120">
-          <polyline fill="none" stroke="#4ADE80" stroke-width="4" points="10,100 60,80 110,60 160,70 210,40 260,50 310,30" />
-          <circle cx="310" cy="30" r="6" fill="#A259F7" />
-        </svg>
+        <canvas
+          id="weightChart"
+          width="320"
+          height="120"
+        ></canvas>
         <div class="progress-label">Weight Trend (kg)</div>
       </div>
     </section>
@@ -68,6 +87,8 @@
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="main.js"></script>
+
 </body>
-</html> 
+</html>
