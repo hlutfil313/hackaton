@@ -23,22 +23,9 @@ modeToggle.addEventListener("click", () => {
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme) setMode(savedTheme);
 
-// Language switch (EN/BM)
-const langSwitch = document.querySelector(".lang-switch");
-let currentLang = localStorage.getItem("lang") || "EN";
-
-function setLang(lang) {
-  currentLang = lang;
-  langSwitch.textContent = lang === "EN" ? "EN/BM" : "BM/EN";
-  localStorage.setItem("lang", lang);
-}
-
-langSwitch.addEventListener("click", () => {
-  setLang(currentLang === "EN" ? "BM" : "EN");
-  // You can call updateLanguage here if you have it
-});
-
-// --- Language Switcher with UI Translation ---
+// -------------------------------
+// Language Translations
+// -------------------------------
 const translations = {
   en: {
     home: {
@@ -154,6 +141,46 @@ const translations = {
   },
 };
 
+// -------------------------------
+// Setup Language Switching
+// -------------------------------
+
+// Find the language toggle button (adjust selector if needed)
+const langSwitch = document.querySelector(".lang-switch");
+
+let currentLang;
+
+// Load saved language from localStorage (default to EN)
+function initLanguage() {
+  const savedLang = localStorage.getItem("lang");
+  currentLang = savedLang || "EN";
+
+  // Set initial button label
+  if (langSwitch) {
+    langSwitch.textContent = currentLang === "EN" ? "EN/BM" : "BM/EN";
+  }
+
+  updateLanguage(currentLang === "EN" ? "en" : "bm");
+}
+
+// Handle user toggling language
+if (langSwitch) {
+  langSwitch.addEventListener("click", () => {
+    const newLang = currentLang === "EN" ? "BM" : "EN";
+    setLang(newLang);
+  });
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  langSwitch.textContent = lang === "EN" ? "EN/BM" : "BM/EN";
+  localStorage.setItem("lang", lang);
+  updateLanguage(lang === "EN" ? "en" : "bm");
+}
+
+// -------------------------------
+// Update Page Content Dynamically
+// -------------------------------
 function updateLanguage(lang) {
   // Home page
   if (window.location.pathname.endsWith("index.html")) {
@@ -165,8 +192,8 @@ function updateLanguage(lang) {
       translations[lang].home.cta;
     document.querySelector(".features h2").textContent =
       translations[lang].home.features;
+
     const featureTitles = document.querySelectorAll(".feature h3");
-    const featureDescs = document.querySelectorAll(".feature p");
     if (featureTitles.length >= 7) {
       featureTitles[0].textContent = translations[lang].home.chatbot;
       featureTitles[1].textContent = translations[lang].home.mealAnalysis;
@@ -176,7 +203,7 @@ function updateLanguage(lang) {
       featureTitles[5].textContent = translations[lang].home.dashboard;
       featureTitles[6].textContent = translations[lang].home.halal;
     }
-    // Footer
+
     const footerLinks = document.querySelectorAll(".footer-links a");
     if (footerLinks.length >= 3) {
       footerLinks[0].textContent = translations[lang].home.about;
@@ -184,7 +211,8 @@ function updateLanguage(lang) {
       footerLinks[2].textContent = translations[lang].home.privacy;
     }
   }
-  // Chatbot
+
+  // Chatbot page
   if (window.location.pathname.endsWith("chatbot.html")) {
     document.querySelector(".header .nav a.active").textContent =
       lang === "en" ? "Chatbot" : "Chatbot";
@@ -194,26 +222,34 @@ function updateLanguage(lang) {
     document.querySelector(".chat-input").placeholder =
       translations[lang].chatbot.input;
   }
-  // Meal Planner
+
+  // Meal Planner page
   if (window.location.pathname.endsWith("meal-planner.html")) {
     document.querySelector(".header .nav a.active").textContent =
       lang === "en" ? "Meal Planner" : "Perancang Makanan";
+
     document.querySelector(
       '.meal-planner-form label[for="weight-goal"]'
     ).textContent = translations[lang].mealPlanner.weight;
+
     document.querySelector(
       '.meal-planner-form label[for="goal-type"]'
     ).textContent = translations[lang].mealPlanner.goal;
+
     document.querySelector(
       '.meal-planner-form label[for="food-pref"]'
     ).textContent = translations[lang].mealPlanner.foodPref;
+
     document.querySelector(
       '.meal-planner-form button[type="submit"]'
     ).textContent = translations[lang].mealPlanner.generate;
+
     document.querySelector(".meal-plan-section h2").textContent =
       translations[lang].mealPlanner.plan;
+
     document.querySelector(".meal-plan-section .cta-btn").textContent =
       translations[lang].mealPlanner.grocery;
+
     const groceryModal = document.getElementById("grocery-modal");
     if (groceryModal) {
       const groceryModalTitle = groceryModal.querySelector("h2");
@@ -221,63 +257,89 @@ function updateLanguage(lang) {
         groceryModalTitle.textContent =
           translations[lang].mealPlanner.modalTitle;
     }
+
     document.getElementById("grocery-print-btn").textContent =
       translations[lang].mealPlanner.print;
   }
-  // Dashboard
+
+  // Dashboard page
   if (window.location.pathname.endsWith("dashboard.html")) {
     document.querySelector(".header .nav a.active").textContent =
       lang === "en" ? "Dashboard" : "Papan Pemuka";
+
     document.querySelector(".progress-section h2").textContent =
       translations[lang].dashboard.progress;
+
     document.querySelector(".habits-section h2").textContent =
       translations[lang].dashboard.habits;
+
     document.querySelector(".report-section h2").textContent =
       translations[lang].dashboard.report;
   }
-  // Calculator
+
+  // Calculator page
   if (window.location.pathname.endsWith("calculator.html")) {
     document.querySelector(".header .nav a.active").textContent =
       lang === "en" ? "Calculator" : "Kalkulator";
+
     document.querySelector(".bmi-section h2").textContent =
       translations[lang].calculator.bmi;
+
     document.querySelector('.bmi-form label[for="bmi-height"]').textContent =
       translations[lang].calculator.height;
+
     document.querySelector('.bmi-form label[for="bmi-weight"]').textContent =
       translations[lang].calculator.weight;
+
     document.querySelector('.bmi-form button[type="submit"]').textContent =
       translations[lang].calculator.calcBMI;
+
     document.querySelector(".tdee-section h2").textContent =
       translations[lang].calculator.tdee;
+
     document.querySelector('.tdee-form label[for="tdee-age"]').textContent =
       translations[lang].calculator.age;
+
     document.querySelector('.tdee-form label[for="tdee-gender"]').textContent =
       translations[lang].calculator.gender;
+
     document.querySelector('#tdee-gender option[value="male"]').textContent =
       translations[lang].calculator.male;
+
     document.querySelector('#tdee-gender option[value="female"]').textContent =
       translations[lang].calculator.female;
+
     document.querySelector('.tdee-form label[for="tdee-height"]').textContent =
       translations[lang].calculator.height;
+
     document.querySelector('.tdee-form label[for="tdee-weight"]').textContent =
       translations[lang].calculator.weight;
+
     document.querySelector(
       '.tdee-form label[for="tdee-activity"]'
     ).textContent = translations[lang].calculator.activity;
+
     document.querySelector('.tdee-form button[type="submit"]').textContent =
       translations[lang].calculator.calcTDEE;
+
     document.querySelector(".kcal-section h2").textContent =
       translations[lang].calculator.kcal;
+
     document.querySelector('.kcal-form label[for="kcal-food"]').textContent =
       translations[lang].calculator.food;
+
     document.querySelector('.kcal-form button[type="submit"]').textContent =
       translations[lang].calculator.analyze;
   }
 }
 
-// On page load, update language
-if (currentLang === "BM") updateLanguage("bm");
-else updateLanguage("en");
+// -------------------------------
+// Initialize on Page Load
+// -------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  initLanguage();
+});
+
 
 // --- Chatbot AI Integration ---
 if (window.location.pathname.endsWith("chatbot.html")) {
